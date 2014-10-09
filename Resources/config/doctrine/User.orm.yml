@@ -1,0 +1,10 @@
+
+Maci\UserBundle\Entity\User:
+    type:  entity
+    table: maci_user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+

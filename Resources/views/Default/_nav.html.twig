@@ -1,0 +1,45 @@
+
+
+
+<nav>
+	<span class="leftMenuTitle">User</span>
+	<ul>
+
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+		<li><a href="{{ path('maci_user_homepage') }}">
+			Index
+		</a></li>
+
+		<li><a href="{{ path('maci_user_profile') }}">
+			Profile
+		</a></li>
+
+		<li><a href="{{ path('maci_address_homepage') }}">
+			Address List
+		</a></li>
+
+{% else %}
+
+		<li><a href="{{ path('fos_user_security_login') }}">
+			{{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+		</a></li>
+
+		<li><a href="{{ path('fos_user_registration_register') }}">
+			{{ 'layout.register'|trans({}, 'FOSUserBundle') }}
+		</a></li>
+
+		<li><a href="{{ path('fos_user_resetting_request') }}">
+			{{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
+		</a></li>
+
+{% endif %}
+
+	</ul>
+</nav>
+
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+	{% include "MaciOrderBundle:Default:_nav.html.twig" %}
+
+{% endif %}

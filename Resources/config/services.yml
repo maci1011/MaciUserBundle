@@ -1,0 +1,7 @@
+parameters:
+#    maci_user.example.class: Maci\UserBundle\Example
+
+services:
+#    maci_user.example:
+#        class: %maci_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

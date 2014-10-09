@@ -1,0 +1,27 @@
+{
+    "name": "maci/user-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony MaciUserBundle",
+    "keywords": ["User Generator", "user", "maci", "bootstrap"],
+    "homepage": "https://github.com/maci1011/MaciUserBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maci",
+            "email": "info@macister.com",
+            "homepage": "http://macister.com"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-0": { "Maci\\UserBundle": "" }
+    },
+    "target-dir": "Maci/UserBundle",
+    "extra": {
+    }
+}

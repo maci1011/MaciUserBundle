@@ -1,0 +1,12 @@
+
+maci_user_homepage:
+    pattern:  /{_locale}/user
+    defaults: { _controller: MaciUserBundle:Default:index }
+
+maci_user_profile:
+    pattern:  /{_locale}/user/profile
+    defaults: { _controller: FOSUserBundle:Profile:show }
+
+maci_user_profile_edit:
+    pattern:  /{_locale}/user/profile/edit
+    defaults: { _controller: FOSUserBundle:Profile:edit }
