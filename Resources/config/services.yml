@@ -1,7 +1,15 @@
-parameters:
-#    maci_user.example.class: Maci\UserBundle\Example
 
 services:
-#    maci_user.example:
-#        class: %maci_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+
+    maci_user.menu_builder:
+        class: Maci\UserBundle\Menu\UserMenuBuilder
+        arguments: ["@knp_menu.factory","@security.context"]
+
+    maci_user.menu.user:
+        class: Knp\Menu\MenuItem
+        factory_service: maci_user.menu_builder
+        factory_method: createUserMenu
+        arguments: ["@request"]
+        scope: request
+        tags:
+            - { name: knp_menu.menu, alias: user }
