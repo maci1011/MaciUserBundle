@@ -25,13 +25,25 @@ class UserMenuBuilder
 	{
 		$menu = $this->factory->createItem('root');
 
+		if ($request->getLocale() !== 'it') {
+
+			$menu->addChild('IT', array('route' => $request->get('_route'), 'routeParameters' => array_merge($request->get('_route_params'), array('_locale' => 'it'))));
+
+		}
+
+		if ($request->getLocale() !== 'en') {
+
+			$menu->addChild('EN', array('route' => $request->get('_route'), 'routeParameters' => array_merge($request->get('_route_params'), array('_locale' => 'en'))));
+
+		}
+
 		$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
 
         if (true === $this->securityContext->isGranted('ROLE_USER')) {
 
 	        if (true === $this->securityContext->isGranted('ROLE_ADMIN')) {
 
-				$menu->addChild('Admin', array('route' => 'maci_admin_homepage'));
+				// $menu->addChild('Admin', array('route' => 'maci_admin_homepage'));
 
 	        }
 
@@ -48,6 +60,33 @@ class UserMenuBuilder
 			$menu->addChild('Login', array('route' => 'fos_user_security_login'));
 
 			$menu->addChild('Register', array('route' => 'fos_user_registration_register'));
+
+        }
+
+		return $menu;
+	}
+
+    public function createLeftMenu(Request $request)
+	{
+		$menu = $this->factory->createItem('root');
+
+        if (true === $this->securityContext->isGranted('ROLE_USER')) {
+
+			$menu->addChild('Index', array('route' => 'maci_user'));
+
+			$menu->addChild('Profile', array('route' => 'maci_user_profile'));
+
+			$menu->addChild('Address List', array('route' => 'maci_address'));
+
+			$menu->addChild('My Orders', array('route' => 'maci_order'));
+
+        } else {
+
+			$menu->addChild('Login', array('route' => 'fos_user_security_login'));
+
+			$menu->addChild('Register', array('route' => 'fos_user_registration_register'));
+
+			$menu->addChild('Change Password', array('route' => 'fos_user_resetting_request'));
 
         }
 
