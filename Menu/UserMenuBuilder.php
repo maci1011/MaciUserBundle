@@ -80,6 +80,8 @@ class UserMenuBuilder
 
 			$menu->addChild('My Orders', array('route' => 'maci_order'));
 
+			$menu->addChild('My Library', array('route' => 'maci_user_library'));
+
         } else {
 
 			$menu->addChild('Login', array('route' => 'fos_user_security_login'));
