@@ -72,7 +72,7 @@ class UserMenuBuilder
 
         if (true === $this->securityContext->isGranted('ROLE_USER')) {
 
-			$menu->addChild('Index', array('route' => 'maci_user'));
+			$menu->addChild('DashBoard', array('route' => 'maci_user'));
 
 			$menu->addChild('Profile', array('route' => 'maci_user_profile'));
 
