@@ -25,6 +25,8 @@ class UserMenuBuilder
 	{
 		$menu = $this->factory->createItem('root');
 
+		$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
+
 		if ($request->getLocale() !== 'it') {
 
 			$menu->addChild('IT', array('route' => $request->get('_route'), 'routeParameters' => array_merge($request->get('_route_params'), array('_locale' => 'it'))));
@@ -37,13 +39,11 @@ class UserMenuBuilder
 
 		}
 
-		$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
-
         if (true === $this->securityContext->isGranted('ROLE_USER')) {
 
 	        if (true === $this->securityContext->isGranted('ROLE_ADMIN')) {
 
-				// $menu->addChild('Admin', array('route' => 'maci_admin_homepage'));
+				$menu->addChild('Dashboard', array('route' => 'maci_admin'));
 
 	        }
 
@@ -72,7 +72,7 @@ class UserMenuBuilder
 
         if (true === $this->securityContext->isGranted('ROLE_USER')) {
 
-			$menu->addChild('DashBoard', array('route' => 'maci_user'));
+			$menu->addChild('Dashboard', array('route' => 'maci_user'));
 
 			$menu->addChild('Profile', array('route' => 'maci_user_profile'));
 
