@@ -51,8 +51,6 @@ class UserMenuBuilder
 
 			$menu->addChild('Cart', array('route' => 'maci_order_cart'));
 
-			$menu->addChild('Orders', array('route' => 'maci_order'));
-
 			$menu->addChild('Logout', array('route' => 'fos_user_security_logout'));
 
         } else {
@@ -76,11 +74,13 @@ class UserMenuBuilder
 
 			$menu->addChild('Profile', array('route' => 'maci_user_profile'));
 
-			$menu->addChild('Address List', array('route' => 'maci_address'));
+			$menu->addChild('My Cart', array('route' => 'maci_order_cart'));
 
 			$menu->addChild('My Orders', array('route' => 'maci_order'));
 
 			$menu->addChild('My Library', array('route' => 'maci_user_library'));
+
+			$menu->addChild('My Addresses', array('route' => 'maci_address'));
 
         } else {
 
