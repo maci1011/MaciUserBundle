@@ -41,13 +41,11 @@ class UserMenuBuilder
 
         if (true === $this->securityContext->isGranted('ROLE_USER')) {
 
-	        if (true === $this->securityContext->isGranted('ROLE_ADMIN')) {
+	        $uname = $this->user->getUsername();
 
-				$menu->addChild('Dashboard', array('route' => 'maci_admin'));
+			$menu->addChild($uname)->setAttribute('dropdown', true);
 
-	        }
-
-			$menu->addChild($this->user->getUsername(), array('route' => 'maci_user'));
+        	$this->addDefaultsLink($menu[$uname]);
 
 			$menu->addChild('Cart', array('route' => 'maci_order_cart'));
 
@@ -70,17 +68,7 @@ class UserMenuBuilder
 
         if (true === $this->securityContext->isGranted('ROLE_USER')) {
 
-			$menu->addChild('Dashboard', array('route' => 'maci_user'));
-
-			$menu->addChild('Profile', array('route' => 'maci_user_profile'));
-
-			$menu->addChild('My Cart', array('route' => 'maci_order_cart'));
-
-			$menu->addChild('My Orders', array('route' => 'maci_order'));
-
-			$menu->addChild('My Library', array('route' => 'maci_user_library'));
-
-			$menu->addChild('My Addresses', array('route' => 'maci_address'));
+        	$this->addDefaultsLink($menu);
 
         } else {
 
@@ -93,5 +81,26 @@ class UserMenuBuilder
         }
 
 		return $menu;
+	}
+
+    public function addDefaultsLink($menu)
+	{
+        if (true === $this->securityContext->isGranted('ROLE_ADMIN')) {
+
+			$menu->addChild('Administration', array('route' => 'maci_admin'));
+
+        }
+
+		$menu->addChild('Dashboard', array('route' => 'maci_user'));
+
+		$menu->addChild('Profile', array('route' => 'maci_user_profile'));
+
+		$menu->addChild('My Cart', array('route' => 'maci_order_cart'));
+
+		$menu->addChild('My Orders', array('route' => 'maci_order'));
+
+		$menu->addChild('My Library', array('route' => 'maci_user_library'));
+
+		$menu->addChild('My Addresses', array('route' => 'maci_address'));
 	}
 }
