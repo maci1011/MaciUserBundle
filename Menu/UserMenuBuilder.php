@@ -41,15 +41,21 @@ class UserMenuBuilder
 
         if (true === $this->securityContext->isGranted('ROLE_USER')) {
 
+        }
+
+		$menu->addChild('Cart', array('route' => 'maci_order_cart'));
+
+        if (true === $this->securityContext->isGranted('ROLE_USER')) {
+
 	        $uname = $this->user->getUsername();
 
 			$menu->addChild($uname)->setAttribute('dropdown', true);
 
         	$this->addDefaultsLink($menu[$uname]);
 
-			$menu->addChild('Cart', array('route' => 'maci_order_cart'));
+        	$menu[$uname]->addChild('Logout', array('route' => 'fos_user_security_logout'));
 
-			$menu->addChild('Logout', array('route' => 'fos_user_security_logout'));
+			$menu[$uname]['Logout']->setAttribute('divider_prepend', true);
 
         } else {
 
@@ -88,6 +94,8 @@ class UserMenuBuilder
         if (true === $this->securityContext->isGranted('ROLE_ADMIN')) {
 
 			$menu->addChild('Administration', array('route' => 'maci_admin'));
+
+			$menu['Administration']->setAttribute('divider_append', true);
 
         }
 
