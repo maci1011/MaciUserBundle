@@ -5,6 +5,9 @@ namespace Maci\UserBundle\Menu;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
+use Doctrine\Common\Persistence\ObjectManager;
+
+use Maci\TranslatorBundle\Controller\TranslatorController;
 
 class UserMenuBuilder
 {
@@ -14,11 +17,18 @@ class UserMenuBuilder
 
 	private $user;
 
-	public function __construct(FactoryInterface $factory, SecurityContext $securityContext)
+	private $translator;
+
+	private $locales;
+
+	public function __construct(FactoryInterface $factory, SecurityContext $securityContext, ObjectManager $om, TranslatorController $tc)
 	{
 	    $this->factory = $factory;
 	    $this->securityContext = $securityContext;
+	    $this->om = $om;
 	    $this->user = $securityContext->getToken()->getUser();
+	    $this->translator = $tc;
+	    $this->locales = $tc->getLocales();
 	}
 
     public function createUserMenu(Request $request)
@@ -27,23 +37,17 @@ class UserMenuBuilder
 
 		$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
 
-		if ($request->getLocale() !== 'it') {
+		foreach ($this->locales as $locale) {
 
-			$menu->addChild('IT', array('route' => $request->get('_route'), 'routeParameters' => array_merge($request->get('_route_params'), array('_locale' => 'it'))));
+			if ($request->getLocale() !== $locale) {
 
+				$menu->addChild(strtoupper($locale), array('route' => $request->get('_route'), 'routeParameters' => array_merge($request->get('_route_params'), array('_locale' => $locale))));
+
+			}
+			
 		}
 
-		if ($request->getLocale() !== 'en') {
-
-			$menu->addChild('EN', array('route' => $request->get('_route'), 'routeParameters' => array_merge($request->get('_route_params'), array('_locale' => 'en'))));
-
-		}
-
-        if (true === $this->securityContext->isGranted('ROLE_USER')) {
-
-        }
-
-		$menu->addChild('Cart', array('route' => 'maci_order_cart'));
+		$menu->addChild($this->translator->getText('menu.cart', 'Cart'), array('route' => 'maci_order_cart'));
 
         if (true === $this->securityContext->isGranted('ROLE_USER')) {
 
@@ -53,15 +57,17 @@ class UserMenuBuilder
 
         	$this->addDefaultsLink($menu[$uname]);
 
-        	$menu[$uname]->addChild('Logout', array('route' => 'fos_user_security_logout'));
+        	$logoutLabel = $this->translator->getText('menu.user.logout', 'Logout');
 
-			$menu[$uname]['Logout']->setAttribute('divider_prepend', true);
+        	$menu[$uname]->addChild($logoutLabel, array('route' => 'fos_user_security_logout'));
+
+			$menu[$uname][$logoutLabel]->setAttribute('divider_prepend', true);
 
         } else {
 
-			$menu->addChild('Login', array('route' => 'fos_user_security_login'));
+			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'fos_user_security_login'));
 
-			$menu->addChild('Register', array('route' => 'fos_user_registration_register'));
+			$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'fos_user_registration_register'));
 
         }
 
@@ -78,11 +84,11 @@ class UserMenuBuilder
 
         } else {
 
-			$menu->addChild('Login', array('route' => 'fos_user_security_login'));
+			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'fos_user_security_login'));
 
-			$menu->addChild('Register', array('route' => 'fos_user_registration_register'));
+			$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'fos_user_registration_register'));
 
-			$menu->addChild('Change Password', array('route' => 'fos_user_resetting_request'));
+			$menu->addChild($this->translator->getText('menu.user.change_password', 'Change Password'), array('route' => 'fos_user_resetting_request'));
 
         }
 
@@ -93,22 +99,24 @@ class UserMenuBuilder
 	{
         if (true === $this->securityContext->isGranted('ROLE_ADMIN')) {
 
-			$menu->addChild('Administration', array('route' => 'maci_admin'));
+        	$adminLabel = $this->translator->getText('menu.user.administration', 'Administration');
 
-			$menu['Administration']->setAttribute('divider_append', true);
+			$menu->addChild($adminLabel, array('route' => 'maci_admin'));
+
+			$menu[$adminLabel]->setAttribute('divider_append', true);
 
         }
 
-		$menu->addChild('Dashboard', array('route' => 'maci_user'));
+		$menu->addChild($this->translator->getText('menu.user.dashboard', 'Dashboard'), array('route' => 'maci_user'));
 
-		$menu->addChild('Profile', array('route' => 'maci_user_profile'));
+		$menu->addChild($this->translator->getText('menu.user.profile', 'Profile'), array('route' => 'maci_user_profile'));
 
-		$menu->addChild('My Cart', array('route' => 'maci_order_cart'));
+		$menu->addChild($this->translator->getText('menu.user.cart', 'My Cart'), array('route' => 'maci_order_cart'));
 
-		$menu->addChild('My Orders', array('route' => 'maci_order'));
+		$menu->addChild($this->translator->getText('menu.user.order', 'My Orders'), array('route' => 'maci_order'));
 
-		$menu->addChild('My Library', array('route' => 'maci_user_library'));
+		$menu->addChild($this->translator->getText('menu.user.library', 'My Library'), array('route' => 'maci_user_library'));
 
-		$menu->addChild('My Addresses', array('route' => 'maci_address'));
+		$menu->addChild($this->translator->getText('menu.user.address', 'My Addresses'), array('route' => 'maci_address'));
 	}
 }
