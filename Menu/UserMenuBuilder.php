@@ -39,9 +39,13 @@ class UserMenuBuilder
 
 		foreach ($this->locales as $locale) {
 
-			if ($request->getLocale() !== $locale) {
+			$label = strtoupper($locale);
 
-				$menu->addChild(strtoupper($locale), array('route' => $request->get('_route'), 'routeParameters' => array_merge($request->get('_route_params'), array('_locale' => $locale))));
+			$menu->addChild($label, array('route' => $request->get('_route'), 'routeParameters' => array_merge($request->get('_route_params'), array('_locale' => $locale))));
+
+			if ($request->getLocale() === $locale) {
+
+				$menu[$label]->setCurrent(true);
 
 			}
 			
