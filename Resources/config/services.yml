@@ -5,6 +5,15 @@ services:
         class: Maci\UserBundle\Menu\UserMenuBuilder
         arguments: ["@knp_menu.factory","@security.context","@doctrine.orm.entity_manager","@maci.translator"]
 
+    maci_user.menu.language:
+        class: Knp\Menu\MenuItem
+        factory_service: maci_user.menu_builder
+        factory_method: createLanguageMenu
+        arguments: ["@request"]
+        scope: request
+        tags:
+            - { name: knp_menu.menu, alias: language }
+
     maci_user.menu.user:
         class: Knp\Menu\MenuItem
         factory_service: maci_user.menu_builder

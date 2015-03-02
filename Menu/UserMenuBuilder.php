@@ -31,11 +31,11 @@ class UserMenuBuilder
 	    $this->locales = $tc->getLocales();
 	}
 
-    public function createUserMenu(Request $request)
+    public function createLanguageMenu(Request $request)
 	{
 		$menu = $this->factory->createItem('root');
 
-		$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
+		$menu->setChildrenAttribute('class', 'nav navbar-nav');
 
 		foreach ($this->locales as $locale) {
 
@@ -51,7 +51,14 @@ class UserMenuBuilder
 			
 		}
 
-		$menu->addChild($this->translator->getText('menu.cart', 'Cart'), array('route' => 'maci_order_cart'));
+		return $menu;
+	}
+
+    public function createUserMenu(Request $request)
+	{
+		$menu = $this->factory->createItem('root');
+
+		$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
 
         if (true === $this->securityContext->isGranted('ROLE_USER')) {
 
@@ -74,6 +81,8 @@ class UserMenuBuilder
 			$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'fos_user_registration_register'));
 
         }
+
+		$menu->addChild($this->translator->getText('menu.cart', 'Cart'), array('route' => 'maci_order_cart'));
 
 		return $menu;
 	}
