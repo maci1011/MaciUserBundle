@@ -12,4 +12,14 @@ class DefaultController extends Controller
     {
         return $this->render('MaciUserBundle:Default:index.html.twig');
     }
+
+    public function loginAction()
+    {
+        return $this->render('MaciUserBundle:Default:login.html.twig');
+    }
+
+    public function registerAction()
+    {
+        return $this->render('MaciUserBundle:Default:register.html.twig');
+    }
 }

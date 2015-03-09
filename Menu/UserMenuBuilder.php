@@ -76,9 +76,9 @@ class UserMenuBuilder
 
         } else {
 
-			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'fos_user_security_login'));
+			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'maci_user_login'));
 
-			$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'fos_user_registration_register'));
+			$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'maci_user_register'));
 
         }
 
@@ -97,9 +97,9 @@ class UserMenuBuilder
 
         } else {
 
-			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'fos_user_security_login'));
+			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'maci_user_login'));
 
-			$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'fos_user_registration_register'));
+			$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'maci_user_register'));
 
 			$menu->addChild($this->translator->getText('menu.user.change_password', 'Change Password'), array('route' => 'fos_user_resetting_request'));
 
