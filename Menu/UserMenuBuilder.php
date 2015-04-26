@@ -91,6 +91,8 @@ class UserMenuBuilder
 	{
 		$menu = $this->factory->createItem('root');
 
+		$menu->setChildrenAttribute('class', 'nav');
+
         if (true === $this->securityContext->isGranted('ROLE_USER')) {
 
         	$this->addDefaultsLink($menu);
