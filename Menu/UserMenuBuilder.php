@@ -114,11 +114,13 @@ class UserMenuBuilder
 	{
         if (true === $this->securityContext->isGranted('ROLE_ADMIN')) {
 
-        	$adminLabel = $this->translator->getText('menu.user.administration', 'Administration');
+			$menu->addChild($this->translator->getText('menu.admin.administration', 'Administration'), array('route' => 'maci_admin'));
 
-			$menu->addChild($adminLabel, array('route' => 'maci_admin'));
+        	$lastLabel = $this->translator->getText('menu.admin.mailer', 'Mailer');
 
-			$menu[$adminLabel]->setAttribute('divider_append', true);
+			$menu->addChild($lastLabel, array('route' => 'maci_mailer'));
+
+			$menu[$lastLabel]->setAttribute('divider_append', true);
 
         }
 
