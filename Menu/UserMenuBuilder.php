@@ -128,6 +128,8 @@ class UserMenuBuilder
 
 		$menu->addChild($this->translator->getText('menu.user.profile', 'Profile'), array('route' => 'maci_user_profile'));
 
+		$menu->addChild($this->translator->getText('menu.user.mails', 'My Mails'), array('route' => 'maci_mailer_user_mails'));
+
 		$menu->addChild($this->translator->getText('menu.user.cart', 'My Cart'), array('route' => 'maci_order_cart'));
 
 		$menu->addChild($this->translator->getText('menu.user.order', 'My Orders'), array('route' => 'maci_order'));
