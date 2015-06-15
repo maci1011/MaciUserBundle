@@ -110,6 +110,39 @@ class UserMenuBuilder
 		return $menu;
 	}
 
+    public function createShortMenu(Request $request)
+	{
+		$menu = $this->factory->createItem('root');
+
+		$menu->setChildrenAttribute('class', 'nav');
+
+		$menu->addChild($this->translator->getText('menu.cart', 'Cart'), array('route' => 'maci_order_cart'));
+
+        if (true === $this->securityContext->isGranted('ROLE_USER')) {
+
+			$menu->addChild($this->translator->getText('menu.user.profile', 'Profile'), array('route' => 'maci_user_profile'));
+
+			$menu->addChild($this->translator->getText('menu.user.order', 'My Orders'), array('route' => 'maci_order'));
+
+			$menu->addChild($this->translator->getText('menu.user.address', 'My Addresses'), array('route' => 'maci_address'));
+
+        	$menu->addChild($this->translator->getText('menu.user.logout', 'Logout'), array('route' => 'fos_user_security_logout'));
+
+        } else {
+
+			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'maci_user_login'));
+
+			$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'maci_user_register'));
+
+			$menu->addChild($this->translator->getText('menu.user.change_password', 'Change Password'), array('route' => 'fos_user_resetting_request'));
+
+			$menu->addChild($this->translator->getText('menu.user.order', 'My Orders'), array('route' => 'maci_order'));
+
+        }
+
+		return $menu;
+	}
+
     public function addDefaultsLink($menu)
 	{
         if (true === $this->securityContext->isGranted('ROLE_ADMIN')) {
