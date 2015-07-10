@@ -149,6 +149,8 @@ class UserMenuBuilder
 
 			$menu->addChild($this->translator->getText('menu.admin.administration', 'Administration'), array('route' => 'maci_admin'));
 
+			$menu->addChild($this->translator->getText('menu.admin.confirmed_orders', 'Confirmed Orders'), array('route' => 'maci_order_confirmed'));
+
         	$lastLabel = $this->translator->getText('menu.admin.mailer', 'Mailer');
 
 			$menu->addChild($lastLabel, array('route' => 'maci_mailer'));
