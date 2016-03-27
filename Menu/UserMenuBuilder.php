@@ -82,6 +82,15 @@ class UserMenuBuilder
 
         }
 
+		return $menu;
+	}
+
+    public function createCartMenu(Request $request)
+	{
+		$menu = $this->factory->createItem('root');
+
+		$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
+
 		$menu->addChild($this->translator->getText('menu.cart', 'Cart'), array('route' => 'maci_order_cart'));
 
 		return $menu;
