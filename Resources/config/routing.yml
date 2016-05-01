@@ -11,6 +11,10 @@ maci_user_register:
     requirements:
         _locale: %r_locales%
 
+maci_user_change_password:
+    pattern:  /user/profile/change_password
+    defaults: { _controller: FOSUserBundle:ChangePassword:changePassword }
+
 maci_user_profile_edit:
     pattern:  /user/profile/edit
     defaults: { _controller: FOSUserBundle:Profile:edit }

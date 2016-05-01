@@ -125,8 +125,6 @@ class UserMenuBuilder
 
 		$menu->setChildrenAttribute('class', 'nav');
 
-		$menu->addChild($this->translator->getText('menu.cart', 'Cart'), array('route' => 'maci_order_cart'));
-
         if (true === $this->securityContext->isGranted('ROLE_USER')) {
 
 			$menu->addChild($this->translator->getText('menu.user.profile', 'Profile'), array('route' => 'maci_user_profile'));
@@ -168,18 +166,16 @@ class UserMenuBuilder
 
         }
 
-		$menu->addChild($this->translator->getText('menu.user.dashboard', 'Dashboard'), array('route' => 'maci_user'));
+		// $menu->addChild($this->translator->getText('menu.user.dashboard', 'Dashboard'), array('route' => 'maci_user'));
 
 		$menu->addChild($this->translator->getText('menu.user.profile', 'Profile'), array('route' => 'maci_user_profile'));
 
-		$menu->addChild($this->translator->getText('menu.user.mails', 'My Mails'), array('route' => 'maci_mailer_user_mails'));
+		$menu->addChild($this->translator->getText('menu.user.address', 'Addresses'), array('route' => 'maci_address'));
 
-		$menu->addChild($this->translator->getText('menu.user.cart', 'My Cart'), array('route' => 'maci_order_cart'));
+		$menu->addChild($this->translator->getText('menu.user.order', 'Orders'), array('route' => 'maci_order'));
 
-		$menu->addChild($this->translator->getText('menu.user.order', 'My Orders'), array('route' => 'maci_order'));
+		$menu->addChild($this->translator->getText('menu.user.library', 'Library'), array('route' => 'maci_user_library'));
 
-		$menu->addChild($this->translator->getText('menu.user.library', 'My Library'), array('route' => 'maci_user_library'));
-
-		$menu->addChild($this->translator->getText('menu.user.address', 'My Addresses'), array('route' => 'maci_address'));
+		$menu->addChild($this->translator->getText('menu.user.notifies', 'Notifies'), array('route' => 'maci_mailer_user_mails'));
 	}
 }

@@ -10,7 +10,8 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('MaciUserBundle:Default:index.html.twig');
+        return $this->redirect($this->generateUrl('maci_user_profile'));
+        // return $this->render('MaciUserBundle:Default:index.html.twig');
     }
 
     public function loginAction()
