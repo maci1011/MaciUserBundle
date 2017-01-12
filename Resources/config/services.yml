@@ -3,49 +3,10 @@ services:
 
     maci_user.menu_builder:
         class: Maci\UserBundle\Menu\UserMenuBuilder
-        arguments: ["@knp_menu.factory","@security.context","@doctrine.orm.entity_manager","@maci.translator"]
-
-    maci_user.menu.language:
-        class: Knp\Menu\MenuItem
-        factory_service: maci_user.menu_builder
-        factory_method: createLanguageMenu
-        arguments: ["@request"]
-        scope: request
+        arguments: ["@knp_menu.factory","@security.authorization_checker",'@security.token_storage',"@request_stack","@maci.translator"]
         tags:
-            - { name: knp_menu.menu, alias: language }
-
-    maci_user.menu.user:
-        class: Knp\Menu\MenuItem
-        factory_service: maci_user.menu_builder
-        factory_method: createUserMenu
-        arguments: ["@request"]
-        scope: request
-        tags:
-            - { name: knp_menu.menu, alias: user }
-
-    maci_user.menu.user_cart:
-        class: Knp\Menu\MenuItem
-        factory_service: maci_user.menu_builder
-        factory_method: createCartMenu
-        arguments: ["@request"]
-        scope: request
-        tags:
-            - { name: knp_menu.menu, alias: user_cart }
-
-    maci_user.menu.user_left:
-        class: Knp\Menu\MenuItem
-        factory_service: maci_user.menu_builder
-        factory_method: createLeftMenu
-        arguments: ["@request"]
-        scope: request
-        tags:
-            - { name: knp_menu.menu, alias: user_left }
-
-    maci_user.menu.user_short:
-        class: Knp\Menu\MenuItem
-        factory_service: maci_user.menu_builder
-        factory_method: createLeftMenu
-        arguments: ["@request"]
-        scope: request
-        tags:
-            - { name: knp_menu.menu, alias: user_short }
+            - { name: knp_menu.menu_builder, method: createLanguageMenu, alias: language }
+            - { name: knp_menu.menu_builder, method: createUserMenu, alias: user }
+            - { name: knp_menu.menu_builder, method: createCartMenu, alias: user_cart }
+            - { name: knp_menu.menu_builder, method: createLeftMenu, alias: user_left }
+            - { name: knp_menu.menu_builder, method: createShortMenu, alias: user_short }

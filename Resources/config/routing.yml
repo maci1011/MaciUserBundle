@@ -1,28 +1,28 @@
 
 maci_user_login:
-    pattern:  /{_locale}/login
+    path:  /{_locale}/login
     defaults: { _controller: MaciUserBundle:Default:login }
     requirements:
         _locale: %r_locales%
 
 maci_user_register:
-    pattern:  /{_locale}/register
+    path:  /{_locale}/register
     defaults: { _controller: MaciUserBundle:Default:register }
     requirements:
         _locale: %r_locales%
 
 maci_user_change_password:
-    pattern:  /user/profile/change_password
+    path:  /user/profile/change_password
     defaults: { _controller: FOSUserBundle:ChangePassword:changePassword }
 
 maci_user_profile_edit:
-    pattern:  /user/profile/edit
+    path:  /user/profile/edit
     defaults: { _controller: FOSUserBundle:Profile:edit }
 
 maci_user_profile:
-    pattern:  /user/profile
+    path:  /user/profile
     defaults: { _controller: FOSUserBundle:Profile:show }
 
 maci_user:
-    pattern:  /user
+    path:  /user
     defaults: { _controller: MaciUserBundle:Default:index }

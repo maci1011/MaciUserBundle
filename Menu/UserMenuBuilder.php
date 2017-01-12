@@ -3,35 +3,39 @@
 namespace Maci\UserBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\SecurityContext;
-use Doctrine\Common\Persistence\ObjectManager;
-
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Maci\TranslatorBundle\Controller\TranslatorController;
 
 class UserMenuBuilder
 {
 	private $factory;
 
-	private $securityContext;
+	private $authorizationChecker;
+
+	private $tokenStorage;
 
 	private $user;
+
+    private $request;
 
 	private $translator;
 
 	private $locales;
 
-	public function __construct(FactoryInterface $factory, SecurityContext $securityContext, ObjectManager $om, TranslatorController $tc)
+	public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage, RequestStack $requestStack, TranslatorController $tc)
 	{
 	    $this->factory = $factory;
-	    $this->securityContext = $securityContext;
-	    $this->om = $om;
-	    $this->user = $securityContext->getToken()->getUser();
+	    $this->authorizationChecker = $authorizationChecker;
+	    $this->tokenStorage = $tokenStorage;
+	    $this->user = $tokenStorage->getToken()->getUser();
+        $this->request = $requestStack->getCurrentRequest();
 	    $this->translator = $tc;
 	    $this->locales = $tc->getLocales();
 	}
 
-    public function createLanguageMenu(Request $request)
+    public function createLanguageMenu(array $options)
 	{
 		$menu = $this->factory->createItem('root');
 
@@ -41,26 +45,26 @@ class UserMenuBuilder
 
 			$label = strtoupper($locale);
 
-			$menu->addChild($label, array('route' => $request->get('_route'), 'routeParameters' => array_merge($request->get('_route_params'), array('_locale' => $locale))));
+			$menu->addChild($label, array('route' => $this->request->get('_route'), 'routeParameters' => array_merge($this->request->get('_route_params'), array('_locale' => $locale))));
 
-			if ($request->getLocale() === $locale) {
+			if ($this->request->getLocale() === $locale) {
 
 				$menu[$label]->setCurrent(true);
 
 			}
-			
+
 		}
 
 		return $menu;
 	}
 
-    public function createUserMenu(Request $request)
+    public function createUserMenu(array $options)
 	{
 		$menu = $this->factory->createItem('root');
 
 		$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
 
-        if (true === $this->securityContext->isGranted('ROLE_USER')) {
+        if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
 
 	        $uname = $this->user->getUsername();
 
@@ -85,7 +89,7 @@ class UserMenuBuilder
 		return $menu;
 	}
 
-    public function createCartMenu(Request $request)
+    public function createCartMenu(array $options)
 	{
 		$menu = $this->factory->createItem('root');
 
@@ -96,13 +100,13 @@ class UserMenuBuilder
 		return $menu;
 	}
 
-    public function createLeftMenu(Request $request)
+    public function createLeftMenu(array $options)
 	{
 		$menu = $this->factory->createItem('root');
 
 		$menu->setChildrenAttribute('class', 'nav');
 
-        if (true === $this->securityContext->isGranted('ROLE_USER')) {
+        if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
 
         	$this->addDefaultsLink($menu);
 
@@ -119,13 +123,13 @@ class UserMenuBuilder
 		return $menu;
 	}
 
-    public function createShortMenu(Request $request)
+    public function createShortMenu(array $options)
 	{
 		$menu = $this->factory->createItem('root');
 
 		$menu->setChildrenAttribute('class', 'nav');
 
-        if (true === $this->securityContext->isGranted('ROLE_USER')) {
+        if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
 
 			$menu->addChild($this->translator->getText('menu.user.profile', 'Profile'), array('route' => 'maci_user_profile'));
 
@@ -152,7 +156,7 @@ class UserMenuBuilder
 
     public function addDefaultsLink($menu)
 	{
-        if (true === $this->securityContext->isGranted('ROLE_ADMIN')) {
+        if (true === $this->authorizationChecker->isGranted('ROLE_ADMIN')) {
 
 			$menu->addChild($this->translator->getText('menu.admin.administration', 'Administration'), array('route' => 'maci_admin'));
 
