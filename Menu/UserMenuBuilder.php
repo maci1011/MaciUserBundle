@@ -68,7 +68,7 @@ class UserMenuBuilder
 
 	        $uname = $this->user->getUsername();
 
-			$menu->addChild($uname)->setAttribute('dropdown', true);
+			$menu->addChild($uname)->setExtra('dropdown', true);
 
         	$this->addDefaultsLink($menu[$uname]);
 
@@ -76,7 +76,7 @@ class UserMenuBuilder
 
         	$menu[$uname]->addChild($logoutLabel, array('route' => 'fos_user_security_logout'));
 
-			$menu[$uname][$logoutLabel]->setAttribute('divider_prepend', true);
+			$menu[$uname][$logoutLabel]->setExtra('divider_prepend', true);
 
         } else {
 
@@ -166,7 +166,7 @@ class UserMenuBuilder
 
 			$menu->addChild($lastLabel, array('route' => 'maci_mailer'));
 
-			$menu[$lastLabel]->setAttribute('divider_append', true);
+			$menu[$lastLabel]->setExtra('divider_append', true);
 
         }
 
