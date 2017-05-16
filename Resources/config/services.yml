@@ -9,4 +9,5 @@ services:
             - { name: knp_menu.menu_builder, method: createUserMenu, alias: user }
             - { name: knp_menu.menu_builder, method: createCartMenu, alias: user_cart }
             - { name: knp_menu.menu_builder, method: createLeftMenu, alias: user_left }
+            - { name: knp_menu.menu_builder, method: createLeftWithRegMenu, alias: user_left_with_reg }
             - { name: knp_menu.menu_builder, method: createShortMenu, alias: user_short }
