@@ -8,7 +8,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->redirect($this->generateUrl('maci_user_profile'));
+        return $this->redirect($this->generateUrl('fos_user_profile_show'));
         // return $this->render('MaciUserBundle:Default:index.html.twig');
     }
 
