@@ -14,3 +14,11 @@ maci_user_register:
 maci_user:
     path:  /user
     defaults: { _controller: MaciUserBundle:Default:index }
+
+maci_user_delete_account:
+    path:  /profile/delete_account
+    defaults: { _controller: MaciUserBundle:Default:deleteAccount }
+
+maci_user_delete_account_confirm:
+    path:  /profile/delete_account/confirm
+    defaults: { _controller: MaciUserBundle:Default:confirmDeleteAccount }

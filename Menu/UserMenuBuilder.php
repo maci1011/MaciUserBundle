@@ -114,6 +114,8 @@ class UserMenuBuilder
 
 			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'maci_user_login'));
 
+			$menu->addChild($this->translator->getText('menu.user.change_password', 'Change Password'), array('route' => 'fos_user_resetting_request'));
+
         }
 
 		return $menu;
