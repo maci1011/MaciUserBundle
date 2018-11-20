@@ -3,13 +3,13 @@ maci_user_login:
     path:  /{_locale}/login
     defaults: { _controller: MaciUserBundle:Default:login }
     requirements:
-        _locale: %r_locales%
+        _locale: "%r_locales%"
 
 maci_user_register:
     path:  /{_locale}/register
     defaults: { _controller: MaciUserBundle:Default:register }
     requirements:
-        _locale: %r_locales%
+        _locale: "%r_locales%"
 
 maci_user:
     path:  /user
