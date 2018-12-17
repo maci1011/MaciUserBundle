@@ -24,7 +24,7 @@ class UserMenuBuilder
 
 	private $locales;
 
-	public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage, RequestStack $requestStack, TranslatorController $tc)
+	public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage, RequestStack $requestStack, TranslatorController $tc, $registrationEnabled)
 	{
 	    $this->factory = $factory;
 	    $this->authorizationChecker = $authorizationChecker;
@@ -33,6 +33,7 @@ class UserMenuBuilder
         $this->request = $requestStack->getCurrentRequest();
 	    $this->translator = $tc;
 	    $this->locales = $tc->getLocales();
+	    $this->registrationEnabled = $registrationEnabled;
 	}
 
     public function createLanguageMenu(array $options)
@@ -114,28 +115,9 @@ class UserMenuBuilder
 
 			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'maci_user_login'));
 
-			$menu->addChild($this->translator->getText('menu.user.change_password', 'Change Password'), array('route' => 'fos_user_resetting_request'));
-
-        }
-
-		return $menu;
-	}
-
-    public function createLeftWithRegMenu(array $options)
-	{
-		$menu = $this->factory->createItem('root');
-
-		$menu->setChildrenAttribute('class', 'nav');
-
-        if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
-
-        	$this->addDefaultsLink($menu);
-
-        } else {
-
-			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'maci_user_login'));
-
-			$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'maci_user_register'));
+			if ($this->registrationEnabled) {
+				$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'maci_user_register'));
+			}
 
 			$menu->addChild($this->translator->getText('menu.user.change_password', 'Change Password'), array('route' => 'fos_user_resetting_request'));
 

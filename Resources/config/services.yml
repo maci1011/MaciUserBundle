@@ -3,11 +3,32 @@ services:
 
     maci_user.menu_builder:
         class: Maci\UserBundle\Menu\UserMenuBuilder
-        arguments: ["@knp_menu.factory","@security.authorization_checker",'@security.token_storage',"@request_stack","@maci.translator"]
+        arguments: ["@knp_menu.factory","@security.authorization_checker",'@security.token_storage',"@request_stack","@maci.translator","%registration_enabled%"]
         tags:
             - { name: knp_menu.menu_builder, method: createLanguageMenu, alias: language }
             - { name: knp_menu.menu_builder, method: createUserMenu, alias: user }
             - { name: knp_menu.menu_builder, method: createCartMenu, alias: user_cart }
             - { name: knp_menu.menu_builder, method: createLeftMenu, alias: user_left }
-            - { name: knp_menu.menu_builder, method: createLeftWithRegMenu, alias: user_left_with_reg }
             - { name: knp_menu.menu_builder, method: createShortMenu, alias: user_short }
+
+    # ---> Address
+
+    Maci\UserBundle\Controller\AddressServiceController:
+        arguments: ["@doctrine.orm.entity_manager","@security.authorization_checker",'@security.token_storage',"@session"]
+        public: true
+
+    maci.addresses:
+        alias: Maci\UserBundle\Controller\AddressServiceController
+
+    maci_address.form.type.address:
+        class: Maci\UserBundle\Form\Type\AddressType
+        arguments: ["@maci.orders"]
+        tags:
+            - { name: form.type, alias: address }
+
+    # ---> Registration
+
+    app.form.registration:
+        class: Maci\UserBundle\Form\Type\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }

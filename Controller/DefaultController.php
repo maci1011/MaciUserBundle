@@ -21,6 +21,9 @@ class DefaultController extends Controller
 
     public function registerAction()
     {
+        if (!$this->getParameter('registration_enabled', false)) {
+            return $this->redirect($this->generateUrl('maci_user_login'));
+        }
         return $this->render('MaciUserBundle:Default:register.html.twig');
     }
 

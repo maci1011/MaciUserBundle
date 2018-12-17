@@ -1,0 +1,38 @@
+
+<div class="row">
+
+{% if list|length %}
+
+{% if select is defined and select %}
+
+<h5>Select or Add an Address:</h5>
+
+{% endif %}
+
+{% for item in list %}
+
+	{% if item.id is null %}
+	{% set id = loop.index0 %}
+	{% else %}
+	{% set id = item.id %}
+	{% endif %}
+
+	<div class="col-sx-6 col-md-4">
+
+		{% include "@MaciUser/Address/_item.html.twig" with { 'address': item } %}
+
+		{% if actions is defined and actions == 'actions' %}
+
+		<a class="btn btn-default" href="{{ path('maci_address_form', {'id': loop.index0}) }}">Edit</a>
+
+		<a class="btn btn-danger" href="{{ path('maci_address_remove', {'id': loop.index0}) }}">Remove</a>
+
+		{% endif %}
+
+	</div>
+
+{% endfor %}
+
+{% endif %}
+
+</div>

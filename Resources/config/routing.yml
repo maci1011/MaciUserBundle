@@ -22,3 +22,17 @@ maci_user_delete_account:
 maci_user_delete_account_confirm:
     path:  /profile/delete_account/confirm
     defaults: { _controller: MaciUserBundle:Default:confirmDeleteAccount }
+
+# ---> Address
+
+maci_address_remove:
+    path:  /address/remove/{id}
+    defaults: { _controller: MaciUserBundle:Address:remove }
+
+maci_address_form:
+    path:  /address/form/{id}
+    defaults: { _controller: MaciUserBundle:Address:addressForm, id: null }
+
+maci_address:
+    path:  /address/
+    defaults: { _controller: MaciUserBundle:Address:index }

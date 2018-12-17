@@ -1,0 +1,74 @@
+
+
+<div class="maci-user-address-form">
+
+
+<form action="{{ path("maci_address_form", {'id': id}) }}" method="post" name="form">
+
+	<div class="form-group">
+    	{{ form_errors(form) }}
+	</div>
+
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-6">
+
+
+			{{ form_row(form.name) }}
+
+			{{ form_row(form.surname) }}
+
+			{{ form_row(form.telephon) }}
+
+			{{ form_row(form.company) }}
+
+			{{ form_row(form.info) }}
+
+
+		</div>
+
+		<div class="col-xs-12 col-sm-6">
+
+
+			{{ form_row(form.address) }}
+
+			{{ form_row(form.floor) }}
+
+			{{ form_row(form.city) }}
+
+			{{ form_row(form.cap) }}
+
+			{{ form_row(form.state) }}
+
+			{{ form_row(form.country) }}
+
+
+		    {% if method %}
+
+		    <input name="address[method]" type="hidden" value="{{ method }}" />
+
+		    {% endif %}
+
+
+		    {{ form_row(form._token) }}
+
+			<div class="form-group">
+			    <em class="optional_fields">[ * {{ 'form.optional_fields' | matra('Optional Fields') }} ]</em>
+			</div>
+
+
+			<div class="form-group">
+				<button class="btn btn-default" name="address[cancel]" id="form_cancel" type="reset">{{ 'form.reser'|matra('Reset') }}</button>
+				<button class="btn btn-primary" name="address[save]" id="form_send" type="submit">{{ 'form.save'|matra('Save') }}</button>
+			</div>
+
+
+		</div>
+
+	</div>
+
+</form>
+
+
+</div>
+

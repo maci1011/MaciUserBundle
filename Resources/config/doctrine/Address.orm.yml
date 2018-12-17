@@ -1,0 +1,71 @@
+
+Maci\UserBundle\Entity\Address:
+    type:  entity
+    table: maci_address
+    repositoryClass: Maci\UserBundle\Repository\AddressRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        status:
+            type: string
+            length: 15
+            nullable: true
+        prefix:
+            type: string
+            length: 7
+            nullable: true
+        name:
+            type: string
+            length: 31
+        surname:
+            type: string
+            length: 31
+        company:
+            type: string
+            length: 63
+            nullable: true
+        address:
+            type: string
+            length: 63
+        floor:
+            type: string
+            length: 63
+            nullable: true
+        cap:
+            type: string
+            length: 5
+        city:
+            type: string
+            length: 63
+        state:
+            type: string
+            length: 2
+        country:
+            type: string
+            length: 31
+        telephon:
+            type: string
+            length: 31
+        info:
+            type: text
+            nullable: true
+        created:
+            type: datetime
+        updated:
+            type: datetime
+        removed:
+            type: boolean
+    manyToOne:
+        user:
+            targetEntity: Maci\UserBundle\Entity\User
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [ setUpdatedValue, setCreatedValue ]
+        preUpdate: [ setUpdatedValue ]
+
+

@@ -1,0 +1,22 @@
+
+<address>
+
+<span class="address-detail name">{{ address.prefix }} {{ address.name }} {{ address.surname }}</span><br/>
+
+<span class="address-detail address">{{ address.address }}</span><br/>
+
+{% if address.floor %}
+<span class="address-detail floor">{{ address.floor }}</span><br/>
+{% endif %}
+
+<span class="address-detail cap">{{ address.cap }} {{ address.city }}</span><br/>
+
+<span class="address-detail country">{{ address.countryName }}</span><br/>
+
+{% if address.telephon %}
+<span class="address-detail country">
+	<abbr title="Phone">Tel.</abbr> {{ address.telephon }}
+</span>
+{% endif %}
+
+</address>
