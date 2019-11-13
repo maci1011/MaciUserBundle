@@ -1,6 +1,8 @@
 
 services:
 
+    # ---> Menu
+
     maci_user.menu_builder:
         class: Maci\UserBundle\Menu\UserMenuBuilder
         arguments: ["@knp_menu.factory","@security.authorization_checker",'@security.token_storage',"@request_stack","@maci.translator","%registration_enabled%"]
