@@ -15,10 +15,10 @@ services:
 
     Maci\UserBundle\Controller\AddressServiceController:
         arguments: ["@doctrine.orm.entity_manager","@security.authorization_checker",'@security.token_storage',"@session"]
-        public: true
 
     maci.addresses:
         alias: Maci\UserBundle\Controller\AddressServiceController
+        public: true
 
     maci_address.form.type.address:
         class: Maci\UserBundle\Form\Type\AddressType

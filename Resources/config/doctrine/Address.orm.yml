@@ -42,10 +42,10 @@ Maci\UserBundle\Entity\Address:
             length: 63
         state:
             type: string
-            length: 2
+            length: 63
         country:
             type: string
-            length: 31
+            length: 2
         telephon:
             type: string
             length: 31

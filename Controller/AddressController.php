@@ -60,7 +60,7 @@ class AddressController extends Controller
         $form->handleRequest($request);
         $method = ( $request->get('method') ? $request->get('method') : false );
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             if (true === $this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
                 $em = $this->getDoctrine()->getManager();

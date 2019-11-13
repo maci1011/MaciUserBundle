@@ -50,20 +50,25 @@ class AddressType extends AbstractType
 		;
 
 		if (count($this->orders->getCountriesArray())) {
+
 			foreach ($this->orders->getCountriesArray() as $key => $value) {
 				$choices[Intl::getRegionBundle()->getCountryName($key)] = $key;
 			}
+
 			$builder->add('country', ChoiceType::class, array(
-					'label_attr' => array('class'=> 'sr-only'), 
-					'choices' => $choices,
-					'attr' => array('placeholder' => 'country')
-				));
+				'label_attr' => array('class'=> 'sr-only'), 
+				'choices' => $choices,
+				'attr' => array('placeholder' => 'country')
+			));
+
 		} else {
+
 			$builder->add('country', ChoiceType::class, array(
-					'label_attr' => array('class'=> 'sr-only'), 
-					'choices' => Intl::getRegionBundle()->getCountryNames(),
-					'attr' => array('placeholder' => 'country')
-				));
+				'label_attr' => array('class'=> 'sr-only'), 
+				'choices' => Intl::getRegionBundle()->getCountryNames(),
+				'attr' => array('placeholder' => 'country')
+			));
+
 		}
 
 		$builder

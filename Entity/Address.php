@@ -528,7 +528,7 @@ class Address
      */
     public function getLabel()
     {
-        return ( $this->getPrefix().' '.$this->getName().' '.$this->getSurname().', '.$this->getAddress().' - '.$this->getCity().' - '.$this->getCountryName() );
+        return ( $this->getPrefix().' '.$this->getName().' '.$this->getSurname().' - '.$this->getAddress().' - '.$this->getCity().', '.$this->getState().' - '.$this->getCountryName() );
     }
 
     /**
