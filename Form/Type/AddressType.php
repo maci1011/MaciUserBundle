@@ -5,9 +5,10 @@ namespace Maci\UserBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Intl\Intl;
+use Symfony\Component\Intl\Countries;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
@@ -49,24 +50,21 @@ class AddressType extends AbstractType
 			->add('state', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'attr' => array('placeholder' => 'state_or_province')))
 		;
 
-		if (count($this->orders->getCountriesArray())) {
+		$countryChoices = $this->orders->getCountryChoices();
 
-			foreach ($this->orders->getCountriesArray() as $key => $value) {
-				$choices[Intl::getRegionBundle()->getCountryName($key)] = $key;
-			}
+		if (count($countryChoices)) {
 
 			$builder->add('country', ChoiceType::class, array(
 				'label_attr' => array('class'=> 'sr-only'), 
-				'choices' => $choices,
-				'attr' => array('placeholder' => 'country')
+				'choices' => $countryChoices,
+				'placeholder' => 'Country'
 			));
 
 		} else {
 
-			$builder->add('country', ChoiceType::class, array(
-				'label_attr' => array('class'=> 'sr-only'), 
-				'choices' => Intl::getRegionBundle()->getCountryNames(),
-				'attr' => array('placeholder' => 'country')
+			$builder->add('country', CountryType::class, array(
+				'label_attr' => array('class'=> 'sr-only'),
+				'placeholder' => 'Country'
 			));
 
 		}
