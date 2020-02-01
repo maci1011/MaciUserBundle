@@ -40,7 +40,7 @@ class UserMenuBuilder
 	{
 		$menu = $this->factory->createItem('root');
 
-		$menu->setChildrenAttribute('class', 'nav navbar-nav');
+		$menu->setChildrenAttribute('class', 'navbar-nav mr-4');
 
 		foreach ($this->locales as $locale) {
 
@@ -63,7 +63,7 @@ class UserMenuBuilder
 	{
 		$menu = $this->factory->createItem('root');
 
-		$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
+		$menu->setChildrenAttribute('class', 'navbar-nav');
 
         if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
 
@@ -94,7 +94,7 @@ class UserMenuBuilder
 	{
 		$menu = $this->factory->createItem('root');
 
-		$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
+		$menu->setChildrenAttribute('class', 'navbar-nav mr-4');
 
 		$menu->addChild($this->translator->getText('menu.cart', 'Cart'), array('route' => 'maci_order_cart'));
 
