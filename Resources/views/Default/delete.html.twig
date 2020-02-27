@@ -3,19 +3,15 @@
 
 
 {% block pathBar %}
-<nav class="breadcrumb-wrapper">
+<nav class="breadcrumb-wrapper" aria-label="breadcrumb">
 <ol class="breadcrumb">
 
-    <li>
-    	<a href="{{ path('fos_user_profile_show') }}">
-    		Profile
-    	</a>
+    <li class="breadcrumb-item">
+    	<a href="{{ path('fos_user_profile_show') }}">Profile</a>
     </li>
 
-    <li class="active">
-    	<span>
-    		{{ 'profile.show.delete_account'|matra('Delete Account') }}
-    	</span>
+    <li class="breadcrumb-item active">
+    	<a href="{{ path('maci_user_delete_account') }}">{{ 'profile.show.delete_account'|matra('Delete Account') }}</a>
     </li>
 
 </ol>
