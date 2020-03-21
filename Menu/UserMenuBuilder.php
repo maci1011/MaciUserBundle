@@ -63,7 +63,7 @@ class UserMenuBuilder
 	{
 		$menu = $this->factory->createItem('root');
 
-		$menu->setChildrenAttribute('class', 'navbar-nav');
+		$menu->setChildrenAttribute('class', 'navbar-nav mr-4');
 
         if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
 
@@ -105,7 +105,7 @@ class UserMenuBuilder
 	{
 		$menu = $this->factory->createItem('root');
 
-		$menu->setChildrenAttribute('class', 'nav');
+		$menu->setChildrenAttribute('class', 'nav flex-column');
 
         if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
 
@@ -130,7 +130,7 @@ class UserMenuBuilder
 	{
 		$menu = $this->factory->createItem('root');
 
-		$menu->setChildrenAttribute('class', 'nav');
+		$menu->setChildrenAttribute('class', 'nav flex-column');
 
         if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
 
@@ -149,8 +149,6 @@ class UserMenuBuilder
 			$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'maci_user_register'));
 
 			$menu->addChild($this->translator->getText('menu.user.change_password', 'Change Password'), array('route' => 'fos_user_resetting_request'));
-
-			$menu->addChild($this->translator->getText('menu.user.order', 'My Orders'), array('route' => 'maci_order'));
 
         }
 
