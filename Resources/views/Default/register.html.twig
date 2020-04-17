@@ -21,6 +21,8 @@
 
 {% block container %}
 
+{% if registration_enabled %}
+
 <div class="container-fluid">
 <div id="securityForm" class="col-12 col-sm-6 offset-sm-3 col-xl-4 offset-xl-4">
 
@@ -30,5 +32,13 @@
 
 </div>
 </div>
+
+{% else %}
+
+<header class="container-fluid page-message-wrapper">
+	<h3 class="registration-closed">{{ 'actions.registration.closed'|matra('We\'re sorry, but registrations are closed.') }}</h3>
+</header>
+
+{% endif %}
 
 {% endblock %}
