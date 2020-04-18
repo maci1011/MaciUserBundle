@@ -2,27 +2,24 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 
-{% block pathBar %}
-<nav class="breadcrumb-wrapper" aria-label="breadcrumb">
-<ol class="breadcrumb">
-
-    <li class="breadcrumb-item">
-    	<a href="{{ path('fos_user_profile_show') }}">Profile</a>
-    </li>
-
-    <li class="breadcrumb-item active">
-    	<a href="{{ path('maci_user_delete_account') }}">{{ 'profile.show.delete_account'|matra('Delete Account') }}</a>
-    </li>
-
-</ol>
-</nav>
-{% endblock %}
-
-
-{% block fos_user_content %}
+{% block container %}
 
 <div class="container-fluid">
 <div id="securityForm" class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+
+	<nav class="breadcrumb-wrapper" aria-label="breadcrumb">
+	<ol class="breadcrumb">
+
+	    <li class="breadcrumb-item">
+	    	<a href="{{ path('fos_user_profile_show') }}">Profile</a>
+	    </li>
+
+	    <li class="breadcrumb-item active">
+	    	<a href="{{ path('maci_user_delete_account') }}">{{ 'profile.show.delete_account'|matra('Delete Account') }}</a>
+	    </li>
+
+	</ol>
+	</nav>
 
 	<h3>{{ 'profile.show.delete_account'|matra('Delete Account') }}</h3>
 
@@ -30,9 +27,9 @@
         {{ 'profile.show.delete_account_message'|matra('If you Delete your Account, you will no longer be able to use it for login.') }}
     </p>
 
-    <a class="btn btn-danger" href="{{ path('maci_user_delete_account_confirm') }}">
+    <button class="btn btn-danger" href="{{ path('maci_user_delete_account_confirm') }}">
         {{ 'profile.show.delete_account'|matra('Delete Account') }}
-    </a>
+    </button>
 
 </div>
 </div>

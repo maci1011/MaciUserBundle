@@ -2,22 +2,6 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 
-{% block pathBar %}
-<nav class="breadcrumb-wrapper" aria-label="breadcrumb">
-<ol class="breadcrumb">
-
-    <li class="breadcrumb-item">
-    	<a href="{{ path('homepage') }}">Home</a>
-    </li>
-
-    <li class="breadcrumb-item active">
-    	<a href="{{ path('maci_user_register') }}">{{ 'user.register' | matra('Register') }}</a>
-    </li>
-
-</ol>
-</nav>
-{% endblock %}
-
 
 {% block container %}
 
@@ -25,6 +9,20 @@
 
 <div class="container-fluid">
 <div id="securityForm" class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+
+	<nav class="breadcrumb-wrapper" aria-label="breadcrumb">
+	<ol class="breadcrumb">
+
+		<li class="breadcrumb-item">
+			<a href="{{ path('homepage') }}">Home</a>
+		</li>
+
+		<li class="breadcrumb-item active">
+			<a href="{{ path('maci_user_register') }}">{{ 'user.register' | matra('Register') }}</a>
+		</li>
+
+	</ol>
+	</nav>
 
 	<h3>{{ 'user.register' | matra('Register') }}</h3>
 
