@@ -16,11 +16,21 @@ class DefaultController extends Controller
 
 	public function loginAction()
 	{
+		$user = $this->getUser();
+		if (is_object($user) && $user instanceof UserInterface) {
+			return $this->redirect($this->generateUrl('maci_user'));
+		}
+
 		return $this->render('MaciUserBundle:Default:login.html.twig');
 	}
 
 	public function registerAction()
 	{
+		$user = $this->getUser();
+		if (is_object($user) && $user instanceof UserInterface) {
+			return $this->redirect($this->generateUrl('maci_user'));
+		}
+
 		return $this->render('MaciUserBundle:Default:register.html.twig');
 	}
 

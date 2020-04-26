@@ -16,6 +16,7 @@ class User extends BaseUser
 	protected $id;
 
 	/**
+	 * @Assert\Length(min=7, max=31, minMessage="validation.user.username.too-short", maxMessage="validation.user.username.too-long", groups={"Registration","Profile"})
 	 * @Assert\NotBlank(groups={"Registration","Profile"})
 	 * @Assert\Regex(pattern="/^[a-zA-Z0-9_]+$/", message="validation.user.password.regex", groups={"Registration","Profile"})
 	 */
@@ -25,7 +26,7 @@ class User extends BaseUser
 	 * @Assert\Length(
 	 *     min=8,
 	 *     max=100,
-	 *     minMessage="validation.user.password.short",
+	 *     minMessage="validation.user.password.too-short",
 	 *     maxMessage="validation.user.password.too-long",
 	 *     groups={"Profile", "ResetPassword", "Registration", "ChangePassword"}
 	 * )
@@ -36,6 +37,11 @@ class User extends BaseUser
 	 * )
 	 */
 	protected $plainPassword;
+
+	/**
+	 * @var \DateTime
+	 */
+	private $created;
 
 	public function __construct()
 	{
@@ -50,5 +56,36 @@ class User extends BaseUser
 	public function getId()
 	{
 		return $this->id;
+	}
+
+	/**
+	 * Set created
+	 *
+	 * @param \DateTime $created
+	 * @return User
+	 */
+	public function setCreated($created)
+	{
+		$this->created = $created;
+
+		return $this;
+	}
+
+	/**
+	 * Get created
+	 *
+	 * @return \DateTime 
+	 */
+	public function getCreated()
+	{
+		return $this->created;
+	}
+
+	/**
+	 * setCreatedValue
+	 */
+	public function setCreatedValue()
+	{
+		$this->created = new \DateTime();
 	}
 }
