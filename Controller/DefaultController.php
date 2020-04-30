@@ -21,7 +21,7 @@ class DefaultController extends Controller
 			return $this->redirect($this->generateUrl('maci_user'));
 		}
 
-		return $this->render('MaciUserBundle:Default:login.html.twig');
+		return $this->render('@MaciUser/Default/login.html.twig');
 	}
 
 	public function registerAction()
@@ -31,7 +31,7 @@ class DefaultController extends Controller
 			return $this->redirect($this->generateUrl('maci_user'));
 		}
 
-		return $this->render('MaciUserBundle:Default:register.html.twig');
+		return $this->render('@MaciUser/Default/register.html.twig');
 	}
 
 	public function deleteAccountAction()
@@ -41,7 +41,7 @@ class DefaultController extends Controller
 			throw new AccessDeniedException('This user does not have access to this section.');
 		}
 
-		return $this->render('MaciUserBundle:Default:delete.html.twig');
+		return $this->render('@MaciUser/Default/delete.html.twig');
 	}
 
 	public function confirmDeleteAccountAction()
