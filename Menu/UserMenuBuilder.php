@@ -71,6 +71,10 @@ class UserMenuBuilder
 
 			$menu->addChild($uname)->setExtra('dropdown', true);
 
+			$menu[$uname]->setAttribute('class', 'dropdown-toggle');
+
+			$menu[$uname]->setAttribute('data-toggle', 'dropdown');
+
         	$this->addDefaultsLink($menu[$uname]);
 
         	$logoutLabel = $this->translator->getText('menu.user.logout', 'Logout');
