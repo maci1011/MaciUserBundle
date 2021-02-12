@@ -49,6 +49,7 @@ Maci\UserBundle\Entity\Address:
         telephon:
             type: string
             length: 31
+            nullable: true
         info:
             type: text
             nullable: true

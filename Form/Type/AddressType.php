@@ -4,7 +4,7 @@ namespace Maci\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Intl\Countries;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -28,11 +28,12 @@ class AddressType extends AbstractType
 		$this->orders = $orders;
 	}
 
-	public function setDefaultOptions(OptionsResolverInterface $resolver)
+	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults(array(
 			'data_class' => 'Maci\UserBundle\Entity\Address',
-			'cascade_validation' => true
+			'embedded' => false,
+			// 'cascade_validation' => true
 		));
 	}
 
@@ -70,12 +71,17 @@ class AddressType extends AbstractType
 		}
 
 		$builder
-			->add('telephon', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'attr' => array('placeholder' => 'telephon')))
+			->add('telephon', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'required' => false, 'attr' => array('placeholder' => 'telephon')))
 			->add('info', TextareaType::class, array('label_attr' => array('class'=> 'sr-only'), 'required' => false, 'attr' => array('placeholder' => 'info')))
 			->add('method', HiddenType::class, array('label_attr' => array('class'=> 'sr-only'), 'mapped' => false, 'required' => false))
-			->add('cancel', ResetType::class)
-			->add('save', SubmitType::class)
 		;
+
+		if (!$options['embedded']) {
+			$builder
+				->add('cancel', ResetType::class)
+				->add('save', SubmitType::class)
+			;
+		}
 	}
 
 	public function getName()
