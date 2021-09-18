@@ -1,9 +1,7 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 
-{% block container %}
-
-{% if registration_enabled %}
+{% block mainPathBar %}
 
 <div class="securityFormWrapper container-fluid">
 <div class="securityForm col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
@@ -21,6 +19,19 @@
 
 	</ol>
 	</nav>
+
+</div>
+</div>
+
+{% endblock %}
+
+
+{% block container %}
+
+{% if registration_enabled %}
+
+<div class="securityFormWrapper container-fluid">
+<div class="securityForm col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
 
 	<h3>{{ 'user.register' | matra('Register') }}</h3>
 

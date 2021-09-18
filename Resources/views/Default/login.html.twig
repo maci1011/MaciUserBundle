@@ -1,7 +1,7 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 
-{% block container %}
+{% block mainPathBar %}
 
 <div class="securityFormWrapper container-fluid">
 <div class="securityForm col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
@@ -9,16 +9,27 @@
 	<nav class="breadcrumb-wrapper" aria-label="breadcrumb">
 	<ol class="breadcrumb">
 
-	    <li class="breadcrumb-item">
-	    	<a href="{{ path('homepage') }}">Home</a>
-	    </li>
+		<li class="breadcrumb-item">
+			<a href="{{ path('homepage') }}">Home</a>
+		</li>
 
-	    <li class="breadcrumb-item active">
-	    	{{ 'user.login' | matra('Login') }}
-	    </li>
+		<li class="breadcrumb-item active">
+			{{ 'user.login' | matra('Login') }}
+		</li>
 
 	</ol>
 	</nav>
+
+</div>
+</div>
+
+{% endblock %}
+
+
+{% block container %}
+
+<div class="securityFormWrapper container-fluid">
+<div class="securityForm col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
 
 	<h3>{{ 'user.login' | matra('Login') }}</h3>
 
