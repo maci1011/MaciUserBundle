@@ -41,14 +41,14 @@ class AddressType extends AbstractType
 	{
 		$builder
 			// ->add('prefix', 'hidden', array('required' => false))
-			->add('name', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'attr' => array('placeholder' => 'name')))
-			->add('surname', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'attr' => array('placeholder' => 'surname')))
+			->add('name', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'required' => true, 'attr' => array('placeholder' => 'name')))
+			->add('surname', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'required' => true, 'attr' => array('placeholder' => 'surname')))
 			->add('company', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'required' => false, 'attr' => array('placeholder' => 'company')))
-			->add('address', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'attr' => array('placeholder' => 'address')))
+			->add('address', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'required' => true, 'attr' => array('placeholder' => 'address')))
 			->add('floor', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'required' => false, 'attr' => array('placeholder' => 'floor')))
-			->add('cap', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'attr' => array('placeholder' => 'cap', 'maxlength' => 5)))
-			->add('city', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'attr' => array('placeholder' => 'city')))
-			->add('state', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'attr' => array('placeholder' => 'state_or_province')))
+			->add('cap', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'required' => true, 'attr' => array('placeholder' => 'cap', 'maxlength' => 5)))
+			->add('city', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'required' => true, 'attr' => array('placeholder' => 'city')))
+			->add('state', TextType::class, array('label_attr' => array('class'=> 'sr-only'), 'required' => true, 'attr' => array('placeholder' => 'state_or_province')))
 		;
 
 		$countryChoices = $this->orders->getCountryChoices();

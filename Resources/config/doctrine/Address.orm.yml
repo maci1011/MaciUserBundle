@@ -40,9 +40,11 @@ Maci\UserBundle\Entity\Address:
         city:
             type: string
             length: 63
+            nullable: true
         state:
             type: string
             length: 63
+            nullable: true
         country:
             type: string
             length: 2
