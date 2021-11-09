@@ -67,21 +67,7 @@ class UserMenuBuilder
 
         if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
 
-	        $uname = $this->user->getUsername();
-
-			$menu->addChild($uname)->setExtra('dropdown', true);
-
-			$menu[$uname]->setAttribute('class', 'dropdown-toggle');
-
-			$menu[$uname]->setAttribute('data-toggle', 'dropdown');
-
-        	$this->addDefaultsLink($menu[$uname]);
-
-        	$logoutLabel = $this->translator->getText('menu.user.logout', 'Logout');
-
-        	$menu[$uname]->addChild($logoutLabel, array('route' => 'fos_user_security_logout'));
-
-			$menu[$uname][$logoutLabel]->setExtra('divider_prepend', true);
+        	$menu->addChild('@'.$this->user->getUsername(), array('route' => 'fos_user_profile_show'));
 
         } else {
 
