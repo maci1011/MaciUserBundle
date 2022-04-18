@@ -42,12 +42,16 @@
 			<input name="address[method]" type="hidden" value="{{ method }}" />
 			{% endif %}
 
-			<div class="form-group">
-				<em class="optional_fields">[ * {{ 'form.optional_fields' | matra('Optional Fields') }} ]</em>
-			</div>
+			{% include "@MaciPage/Form/_optional_fields.html.twig" %}
 
-			<div class="form-group">
-				<button class="btn btn-primary" name="address[save]" id="form_send" type="submit">{{ 'form.save'|matra('Save') }}</button>
+			<div class="form-group text-right">
+				<button class="btn btn-primary" name="address[save]" id="form_send" type="submit">
+					{% if method %}
+					{{ 'form.continue'|matra('Continue') }}
+					{% else %}
+					{{ 'form.save'|matra('Save') }}
+					{% endif %}
+				</button>
 			</div>
 
 		</div>
