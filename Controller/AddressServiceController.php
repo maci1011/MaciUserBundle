@@ -96,28 +96,29 @@ class AddressServiceController extends Controller
         return $choices;
     }
 
-    public function getAddressFromArray($adr)
+    public static function getAddressFromArray($array)
     {
+        if (!$array) return null;
         $address = new Address;
-        $address->setPrefix($adr['prefix']);
-        $address->setName($adr['name']);
-        $address->setSurname($adr['surname']);
-        $address->setCompany($adr['company']);
-        $address->setAddress($adr['address']);
-        $address->setFloor($adr['floor']);
-        $address->setCap($adr['cap']);
-        $address->setCity($adr['city']);
-        $address->setCountry($adr['country']);
-        $address->setState($adr['state']);
-        $address->setTelephon($adr['telephon']);
-        $address->setMail($adr['mail']);
-        $address->setInfo($adr['info']);
+        $address->setPrefix($array['prefix']);
+        $address->setName($array['name']);
+        $address->setSurname($array['surname']);
+        $address->setCompany($array['company']);
+        $address->setAddress($array['address']);
+        $address->setFloor($array['floor']);
+        $address->setCap($array['cap']);
+        $address->setCity($array['city']);
+        $address->setCountry($array['country']);
+        $address->setState($array['state']);
+        $address->setTelephon($array['telephon']);
+        $address->setInfo($array['info']);
         return $address;
     }
 
-    public function getArrayFromAddress($address)
+    public static function getArrayFromAddress($address)
     {
-        return array(
+        if (!$address) return [];
+        return [
             'prefix' => $address->getPrefix(),
             'name' => $address->getName(),
             'surname' => $address->getSurname(),
@@ -129,8 +130,7 @@ class AddressServiceController extends Controller
             'country' => $address->getCountry(),
             'state' => $address->getState(),
             'telephon' => $address->getTelephon(),
-            'mail' => $address->getMail(),
             'info' => $address->getInfo(),
-        );
+        ];
     }
 }
