@@ -523,12 +523,14 @@ class Address
 		$this->updated = new \DateTime();
 	}
 
-	/**
-	 * __toString()
-	 */
+	public function getHeading()
+	{
+		return ($this->getPrefix().' '.$this->getName().' '.$this->getSurname());
+	}
+
 	public function getLabel()
 	{
-		return ( $this->getPrefix().' '.$this->getName().' '.$this->getSurname().' - '.$this->getAddress().' - '.$this->getCity().', '.$this->getState().' - '.$this->getCountryName() );
+		return ($this->getHeading().' - '.$this->getAddress().' - '.$this->getCity().', '.$this->getState().' - '.$this->getCountryName());
 	}
 
 	/**
