@@ -24,7 +24,7 @@ services:
 
     maci_address.form.type.address:
         class: Maci\UserBundle\Form\Type\AddressType
-        arguments: ["@maci.orders"]
+        arguments: ["@maci.orders","@maci.translator"]
         tags:
             - { name: form.type, alias: address }
 
