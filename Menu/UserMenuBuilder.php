@@ -172,5 +172,7 @@ class UserMenuBuilder
 		$menu->addChild($this->translator->getText('menu.user.library', 'Library'), array('route' => 'maci_user_library'));
 
 		$menu->addChild($this->translator->getText('menu.user.notifications', 'Notifications'), array('route' => 'maci_mailer_user_mails'));
+
+        $menu->addChild($this->translator->getText('menu.user.logout', 'Logout'), array('route' => 'fos_user_security_logout'));
 	}
 }
