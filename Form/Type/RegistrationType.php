@@ -19,7 +19,7 @@ class RegistrationType extends AbstractType
 
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
-		if($options['env'] === "prod")
+		if($this->env === "prod")
 			$builder->add('recaptcha', EWZRecaptchaType::class, [
 				'label_attr' => ['class'=> 'sr-only'],
 				'mapped' => false,
