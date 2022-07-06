@@ -32,5 +32,6 @@ services:
 
     app.form.registration:
         class: Maci\UserBundle\Form\Type\RegistrationType
+        arguments: ["%env(APP_ENV)%"]
         tags:
             - { name: form.type, alias: app_user_registration }
