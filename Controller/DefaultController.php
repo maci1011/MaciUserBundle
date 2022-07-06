@@ -11,7 +11,6 @@ class DefaultController extends Controller
 	public function indexAction()
 	{
 		return $this->redirect($this->generateUrl('fos_user_profile_show'));
-		// return $this->render('MaciUserBundle:Default:index.html.twig');
 	}
 
 	public function loginAction()
@@ -21,7 +20,7 @@ class DefaultController extends Controller
 			return $this->redirect($this->generateUrl('maci_user'));
 		}
 
-		return $this->render('@MaciUser/Default/login.html.twig');
+		return $this->redirect($this->generateUrl('fos_user_security_login'));
 	}
 
 	public function registerAction()
@@ -31,7 +30,7 @@ class DefaultController extends Controller
 			return $this->redirect($this->generateUrl('maci_user'));
 		}
 
-		return $this->render('@MaciUser/Default/register.html.twig');
+		return $this->redirect($this->generateUrl('fos_user_registration_register'));
 	}
 
 	public function deleteAccountAction()
