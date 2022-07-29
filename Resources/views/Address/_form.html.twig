@@ -2,9 +2,11 @@
 <div class="maci-user-address-form">
 <form action="{{ path("maci_address_form", {'id': id}) }}" method="post" name="form">
 
+	{% if not form.vars.valid %}
 	<div class="form-group">
 		{{ form_errors(form) }}
 	</div>
+	{% endif %}
 
 	<div class="row">
 
