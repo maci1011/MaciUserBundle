@@ -13,15 +13,10 @@
 		<div class="col-xs-12 col-sm-6">
 
 			{{ form_row(form.name) }}
-
 			{{ form_row(form.surname) }}
-
 			{{ form_row(form.telephon) }}
-
 			{{ form_row(form.company) }}
-
 			{{ form_row(form.address) }}
-
 			{{ form_row(form.floor) }}
 
 		</div>
@@ -29,15 +24,10 @@
 		<div class="col-xs-12 col-sm-6">
 
 			{{ form_row(form.city) }}
-
 			{{ form_row(form.cap) }}
-
 			{{ form_row(form.state) }}
-
 			{{ form_row(form.country) }}
-
 			{{ form_row(form.info) }}
-
 			{{ form_row(form._token) }}
 
 			{% if method %}
@@ -48,6 +38,7 @@
 
 			<div class="form-group text-right">
 				<button class="btn btn-primary" name="address[save]" id="form_send" type="submit">
+					<i class="fas fa-address-card"></i>
 					{{ 'form.save-address'|matra('Save Address') }}
 				</button>
 			</div>
