@@ -18,7 +18,7 @@ class UserMenuBuilder
 
 	private $user;
 
-    private $request;
+	private $request;
 
 	private $translator;
 
@@ -26,17 +26,17 @@ class UserMenuBuilder
 
 	public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage, RequestStack $requestStack, TranslatorController $tc, $registrationEnabled)
 	{
-	    $this->factory = $factory;
-	    $this->authorizationChecker = $authorizationChecker;
-	    $this->tokenStorage = $tokenStorage;
-	    $this->user = $tokenStorage->getToken()->getUser();
-        $this->request = $requestStack->getCurrentRequest();
-	    $this->translator = $tc;
-	    $this->locales = $tc->getLocales();
-	    $this->registrationEnabled = $registrationEnabled;
+		$this->factory = $factory;
+		$this->authorizationChecker = $authorizationChecker;
+		$this->tokenStorage = $tokenStorage;
+		$this->user = $tokenStorage->getToken()->getUser();
+		$this->request = $requestStack->getCurrentRequest();
+		$this->translator = $tc;
+		$this->locales = $tc->getLocales();
+		$this->registrationEnabled = $registrationEnabled;
 	}
 
-    public function createLanguageMenu(array $options)
+	public function createLanguageMenu(array $options)
 	{
 		$menu = $this->factory->createItem('root');
 
@@ -59,28 +59,28 @@ class UserMenuBuilder
 		return $menu;
 	}
 
-    public function createUserMenu(array $options)
+	public function createUserMenu(array $options)
 	{
 		$menu = $this->factory->createItem('root');
 
 		$menu->setChildrenAttribute('class', 'navbar-nav');
 
-        if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
+		if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
 
-        	$menu->addChild('@'.$this->user->getUsername(), array('route' => 'fos_user_profile_show'));
+			$menu->addChild('@'.$this->user->getUsername(), array('route' => 'fos_user_profile_show'));
 
-        } else {
+		} else {
 
 			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'maci_user_login'));
 
 			$menu->addChild($this->translator->getText('menu.user.register', 'Register'), array('route' => 'maci_user_register'));
 
-        }
+		}
 
 		return $menu;
 	}
 
-    public function createCartMenu(array $options)
+	public function createCartMenu(array $options)
 	{
 		$menu = $this->factory->createItem('root');
 
@@ -91,17 +91,17 @@ class UserMenuBuilder
 		return $menu;
 	}
 
-    public function createLeftMenu(array $options)
+	public function createLeftMenu(array $options)
 	{
 		$menu = $this->factory->createItem('root');
 
 		$menu->setChildrenAttribute('class', 'nav flex-column');
 
-        if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
+		if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
 
-        	$this->addDefaultsLink($menu);
+			$this->addDefaultsLink($menu);
 
-        } else {
+		} else {
 
 			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'maci_user_login'));
 
@@ -111,18 +111,18 @@ class UserMenuBuilder
 
 			$menu->addChild($this->translator->getText('menu.user.change_password', 'Change Password'), array('route' => 'fos_user_resetting_request'));
 
-        }
+		}
 
 		return $menu;
 	}
 
-    public function createShortMenu(array $options)
+	public function createShortMenu(array $options)
 	{
 		$menu = $this->factory->createItem('root');
 
 		$menu->setChildrenAttribute('class', 'nav flex-column');
 
-        if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
+		if (true === $this->authorizationChecker->isGranted('ROLE_USER')) {
 
 			$menu->addChild($this->translator->getText('menu.user.profile', 'Profile'), array('route' => 'fos_user_profile_show'));
 
@@ -130,9 +130,9 @@ class UserMenuBuilder
 
 			$menu->addChild($this->translator->getText('menu.user.address', 'My Addresses'), array('route' => 'maci_address'));
 
-        	$menu->addChild($this->translator->getText('menu.user.logout', 'Logout'), array('route' => 'fos_user_security_logout'));
+			$menu->addChild($this->translator->getText('menu.user.logout', 'Logout'), array('route' => 'fos_user_security_logout'));
 
-        } else {
+		} else {
 
 			$menu->addChild($this->translator->getText('menu.user.login', 'Login'), array('route' => 'maci_user_login'));
 
@@ -140,26 +140,26 @@ class UserMenuBuilder
 
 			$menu->addChild($this->translator->getText('menu.user.change_password', 'Change Password'), array('route' => 'fos_user_resetting_request'));
 
-        }
+		}
 
 		return $menu;
 	}
 
-    public function addDefaultsLink($menu)
+	public function addDefaultsLink($menu)
 	{
-        if (true === $this->authorizationChecker->isGranted('ROLE_ADMIN')) {
+		if (true === $this->authorizationChecker->isGranted('ROLE_ADMIN')) {
 
 			$menu->addChild($this->translator->getText('menu.admin.administration', 'Administration'), array('route' => 'maci_admin'));
 
 			$menu->addChild($this->translator->getText('menu.admin.shop_admin', 'Shop Admin'), array('route' => 'maci_order_admin_confirmed'));
 
-        	$lastLabel = $this->translator->getText('menu.admin.mails_admin', 'Mails Admin');
+			$lastLabel = $this->translator->getText('menu.admin.mails_admin', 'Mails Admin');
 
 			$menu->addChild($lastLabel, array('route' => 'maci_mailer'));
 
 			$menu[$lastLabel]->setExtra('divider_append', true);
 
-        }
+		}
 
 		// $menu->addChild($this->translator->getText('menu.user.dashboard', 'Dashboard'), array('route' => 'maci_user'));
 
@@ -173,6 +173,6 @@ class UserMenuBuilder
 
 		$menu->addChild($this->translator->getText('menu.user.notifications', 'Notifications'), array('route' => 'maci_mailer_user_mails'));
 
-        $menu->addChild($this->translator->getText('menu.user.logout', 'Logout'), array('route' => 'fos_user_security_logout'));
+		$menu->addChild($this->translator->getText('menu.user.logout', 'Logout'), array('route' => 'fos_user_security_logout'));
 	}
 }
