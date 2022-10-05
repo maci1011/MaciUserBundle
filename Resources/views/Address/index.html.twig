@@ -1,24 +1,19 @@
-
 {% extends "@FOSUser/layout.html.twig" %}
-
-
 
 {% block fos_user_content %}
 
+<section class="page_container user_content address-list">
 
-<section class="page_container user_page">
+	<h1>{{ 'menu.user.address'|matra('Addresses') }}</h1>
 
-<h1>{{ 'menu.user.address'|matra('Addresses') }}</h1>
+	{% include "@MaciUser/Address/_list.html.twig" with { 'actions': 'actions' } %}
 
-{% include "@MaciUser/Address/_list.html.twig" with { 'list': list, 'actions': 'actions' } %}
-
-<br/>
-
-<a class="btn btn-default"  href="{{ path('maci_address_form') }}">
-	{{ 'address.list.add'|matra('New Address') }}
-</a>
+	<div class="buttons-bar actions">
+		<a class="btn btn-default"  href="{{ path('maci_address_form') }}">
+			{{ 'address.list.add'|matra('New Address') }}
+		</a>
+	</div>
 
 </section>
-
 
 {% endblock %}
