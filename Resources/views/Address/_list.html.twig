@@ -5,7 +5,7 @@
 
 {% if select is defined and select %}
 
-<h5>Select or Add an Address:</h5>
+<h5>{{ 'address.select-or-add'|matla('Select or Add an Address') }}:</h5>
 
 {% endif %}
 
@@ -24,9 +24,19 @@
 
 		{% if actions is defined and actions == 'actions' %}
 
-		<a class="btn btn-default" href="{{ path('maci_address_form', {'id': loop.index0}) }}">Edit</a>
+		<div class="address-actions">
 
-		<a class="btn btn-danger" href="{{ path('maci_address_remove', {'id': loop.index0}) }}">Remove</a>
+			<a class="btn btn-default" href="{{ path('maci_address_form', {'id': loop.index0}) }}">
+				<i class="fas fa-pen"></i>
+				{{ 'edit'|matla('Edit') }}
+			</a>
+
+			<a class="btn btn-danger" href="{{ path('maci_address_remove', {'id': loop.index0}) }}">
+				<i class="fas fa-times"></i>
+				{{ 'remove'|matla('Remove') }}
+			</a>
+
+		</div>
 
 		{% endif %}
 
