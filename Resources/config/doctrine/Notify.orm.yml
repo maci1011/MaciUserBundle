@@ -1,0 +1,27 @@
+
+Maci\UserBundle\Entity\Notify:
+    type:  entity
+    table: maci_user_notify
+    id:
+        hash:
+            type: string
+            length: 13
+    fields:
+        type:
+            type: string
+            length: 1
+        text:
+            type: string
+            length: 255
+        data:
+            type: json
+        created:
+            type: datetime
+    manyToOne:
+        user:
+            targetEntity: Maci\UserBundle\Entity\User
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [ setCreatedValue ]

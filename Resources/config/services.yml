@@ -28,6 +28,15 @@ services:
         tags:
             - { name: form.type, alias: address }
 
+    # ---> Notify
+
+    Maci\UserBundle\Controller\NotifyService:
+        arguments: ["@doctrine.orm.entity_manager","@security.authorization_checker",'@security.token_storage']
+
+    maci.notify:
+        alias: Maci\UserBundle\Controller\NotifyService
+        public: true
+
     # ---> Registration
 
     app.form.registration:
