@@ -13,16 +13,16 @@ class AddressController extends Controller
 {
 	public function indexAction()
 	{
-		return $this->render('MaciUserBundle:Address:index.html.twig', array(
+		return $this->render('MaciUserBundle:Address:index.html.twig', [
 			'list' => $this->get('maci.addresses')->getAddressList()
-		));
+		]);
 	}
 
 	public function listAction(Request $request)
 	{
-		return $this->render('MaciUserBundle:Address:_list.html.twig', array(
+		return $this->render('MaciUserBundle:Address:_list.html.twig', [
 			'list' => $this->get('maci.addresses')->getAddressList()
-		));
+		]);
 	}
 
 	public function addressFormAction(Request $request, $id)
@@ -37,21 +37,22 @@ class AddressController extends Controller
 
 	public function removeAction(Request $request, $id)
 	{
-		if ( $this->get('maci.addresses')->removeItem(intval($id)) ) {
-			return $this->redirect($this->generateUrl('maci_address', array('removed' => true)));
-		} else {
-			return $this->redirect($this->generateUrl('maci_address', array('error' => true)));
-		}
+		if ( $this->get('maci.addresses')->removeItem(intval($id)) )
+			return $this->redirect($this->generateUrl('maci_address', ['removed' => true]));
+
+		return $this->redirect($this->generateUrl('maci_address', ['error' => true]));
 	}
 
 	public function form(Request $request, $id, $template)
 	{
-		if ($id === null) {
+		if ($id === null)
 			$address = new Address();
-		} else {
+		else
+		{
 			$address = $this->get('maci.addresses')->getAddress(intval($id));
-			if (!$address) {
-				var_dump( array_keys($this->get('maci.addresses')->getAddressList()) );die();
+			if (!$address)
+			{
+				var_dump(array_keys($this->get('maci.addresses')->getAddressList()));die();
 				return false;
 			}
 		}
@@ -60,8 +61,8 @@ class AddressController extends Controller
 		$form->handleRequest($request);
 		$method = ( $request->get('method') ? $request->get('method') : false );
 
-		if ($form->isSubmitted() && $form->isValid()) {
-
+		if ($form->isSubmitted() && $form->isValid())
+		{
 			if (true === $this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
 				$em = $this->getDoctrine()->getManager();
 				if ($id === null) {
@@ -95,11 +96,11 @@ class AddressController extends Controller
 			return $this->redirect($this->generateUrl('maci_address', array($message => true)));
 		}
 
-		return $this->render($template, array(
+		return $this->render($template, [
 			'id' => $id,
 			'address' => $address,
 			'form' => $form->createView(),
 			'method' => $method
-		));
+		]);
 	}
 }

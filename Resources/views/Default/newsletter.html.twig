@@ -1,0 +1,51 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<nav class="breadcrumb-wrapper" aria-label="breadcrumb">
+<ol class="breadcrumb">
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('homepage') }}">Home</a>
+	</li>
+
+	<li class="breadcrumb-item">
+		<a href="{{ path('fos_user_profile_show') }}">Profile</a>
+	</li>
+
+	<li class="breadcrumb-item active">
+		{{ 'profile.newsletter'|matra('Newsletter') }}
+	</li>
+
+</ol>
+</nav>
+
+<h3>{{ 'profile.newsletter'|matra('Newsletter') }}</h3>
+
+<div class="row s1">
+	<div class="col-sx-12 col-sm-4">
+		<p>
+			<strong>{{ 'profile.newsletter.default.title'|matra('Newsletter') }}</strong><br/>
+			{{ 'profile.newsletter.default.description'|matra('Receive our Newsletter') }}
+		</p>
+	</div>
+	<div class="col-sx-12 col-sm-8">
+		{% if subscription.removed %}
+		<span class="stat-icon"><i class="fas fa-times"></i></span>
+		{% else %}
+		<span class="stat-icon"><i class="fas fa-check"></i></span>
+		{% endif %}
+	</div>
+</div>
+
+{% if subscription.removed %}
+<a class="btn btn-danger" href="{{ path('maci_user_newsletter_enable') }}">
+	{{ 'profile.newsletter.default.enable-btt'|matra('Enable Newsletter') }}
+</a>
+{% else %}
+<a class="btn btn-danger" href="{{ path('maci_user_newsletter_disable') }}">
+	{{ 'profile.newsletter.default.disable-btt'|matra('Cancel Subscription') }}
+</a>
+{% endif %}
+
+{% endblock %}

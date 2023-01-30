@@ -23,6 +23,14 @@ maci_user_delete_account_confirm:
     path:  /profile/delete_account/confirm
     defaults: { _controller: MaciUserBundle:Default:confirmDeleteAccount }
 
+maci_user_newsletter:
+    path:  /profile/newsletter
+    defaults: { _controller: MaciUserBundle:Default:newsletter }
+
+maci_user_notifies:
+    path:  /profile/notifies
+    defaults: { _controller: MaciUserBundle:Default:notifies }
+
 # ---> Address
 
 maci_address_remove:

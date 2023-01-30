@@ -164,6 +164,8 @@ class UserMenuBuilder
 
 		$menu->addChild($this->translator->getText('menu.user.order', 'Orders'), array('route' => 'maci_order'));
 
+		$menu->addChild($this->translator->getText('menu.user.newsletter', 'Newsletter'), array('route' => 'maci_user_newsletter'));
+
 		// $menu->addChild($this->translator->getText('menu.user.library', 'Library'), array('route' => 'maci_user_library'));
 
 		// $menu->addChild($this->translator->getText('menu.user.notifications', 'Notifications'), array('route' => 'maci_mailer_user_mails'));
