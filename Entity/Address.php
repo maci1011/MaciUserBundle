@@ -377,7 +377,12 @@ class Address
 	 */
 	public function getCountryName()
 	{
-		return Intl::getRegionBundle()->getCountryName( $this->country );
+		return $this->getCountryLabel();
+	}
+
+	public function getCountryLabel()
+	{
+		return Intl::getRegionBundle()->getCountryName($this->country);
 	}
 
 	/**
